@@ -20,18 +20,12 @@ let source = ""
 
 let chargerImage = function(event) {
   image.src = URL.createObjectURL(event.target.files[0])
-  // image.style.display = "block"
   image.style.position = "relative"
   image.style.top = "20px"
   image.style.right = "-100px"
   lien = URL.createObjectURL(event.target.files[0])
 
 }
-
-
-
-
-
 selectField.onclick = function() {
   list.classList.toggle("hide")
   iconArrow.classList.toggle("rotate")
@@ -173,11 +167,6 @@ buttonCreer.addEventListener("click", function(event) {
   })
 
 
-
-
-
-
-
 })
 
 //Réinitialiser
@@ -191,10 +180,3 @@ buttonReini.addEventListener("click", function(event) {
 
 
 })
-
-
-
-
-
-
-
