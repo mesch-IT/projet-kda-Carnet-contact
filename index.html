@@ -1,15 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  Hello world
+
+  <header class="header">
+    <h1>Répertoire de contact</h1>
+  </header>
+  <div class="main">
+    <div class="grid">
+      <div class="titleForm">
+        <h1>Formulaire de contact</h1>
+      </div>
+      <form action="">
+        <input type="text" id="identifiant" style="display: none;">
+        <p class="form-para">Pénom</p>
+        <input type="text" id="prenom" class="input">
+        <p class="form-para">Nom</p>
+        <input type="text" id="nom" class="input">
+        <p class="form-para">Groupe</p>
+        <div class="multi-selector">
+          <div id="selectField">
+            <div class="inputText">
+              <p id="selectText" class="inputText"></p>
+              <img src="arrow.png" alt="arrow" id="iconArrow">
+            </div>
+          </div>
+          <div class="listOptions">
+            <ul id="list" class="hide">
+              <li class="options">Famille</li>
+              <li class="options">Amis</li>
+              <li class="options">Connaissance</li>
+            </ul>
+          </div>
+        </div>
+        <p class="form-para">Bio</p>
+        <textarea name="bio" id="bio" cols="30" rows="10" class="input"></textarea> <br>
+        <label for="image" class="labelImage">Choisir un fichier</label>
+        <input type="file" id="image" accept="image/png, image/jpeg" onchange="chargerImage(event)">
+        <img src="" id="displayImage"></img>
+        <div class="button">
+          <button type="submit" id="buttonCreer">Créer</button>
+          <button type="reset" id="buttonReini">Réini.</button>
+        </div>
+      </form>
+    </div>
+    <div class="grid" id="grid2">
+      <div class="titleForm">
+        <h1>Liste de contact</h1>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
   <script src="script.js"></script>
 </body>
 
