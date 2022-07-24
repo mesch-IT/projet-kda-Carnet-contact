@@ -1,5 +1,9 @@
 
-
+let prenom = ""
+let nom = ""
+let bio = ""
+let deleteItem = ""
+let createImage = ""
 
 let buttonCreer = document.getElementById("buttonCreer")
 const buttonReini = document.getElementById("buttonReini")
@@ -40,6 +44,7 @@ for (option of options) {
 }
 buttonCreer.addEventListener("click", function(event) {
   event.preventDefault()
+
   source = image_input.value
   let divDisplay = document.createElement("div")
   divDisplay.classList.add("contacts")
@@ -49,134 +54,143 @@ buttonCreer.addEventListener("click", function(event) {
   let grid2 = document.getElementById("grid2")
   grid2.appendChild(divDisplay)
 
-  let prenom = document.getElementById("prenom").value
-  let nom = document.getElementById("nom").value
-  let bio = document.getElementById("bio").value
-  let selectText = document.getElementById("selectText").textContent
-  let deleteItem = document.createElement("img")
-  let createImage = document.createElement("img")
-  createImage.src = lien
-  createImage.classList.add("showImage")
+   prenom = document.getElementById("prenom").value
+   nom = document.getElementById("nom").value
+   bio = document.getElementById("bio").value
+   selectText = document.getElementById("selectText").textContent
+   deleteItem = document.createElement("img")
+   createImage = document.createElement("img")
+   
+  if ( selectText != "" && prenom != "" && nom != "" && bio != "" && lien != "") {
+    createImage.src = lien
 
-  divDisplay.appendChild(createImage)
+    createImage.classList.add("showImage")
 
-  deleteItem.src = "delete.png"
-  deleteItem.classList.add("delete")
+    divDisplay.appendChild(createImage)
 
-  divDisplay.appendChild(deleteItem)
+    deleteItem.src = "delete.png"
+    deleteItem.classList.add("delete")
 
-  let listPrenom = document.createElement("span")
-  listPrenom.classList.add("userData")
-  listPrenom.textContent = prenom
-  divDisplay.appendChild(listPrenom)
+    divDisplay.appendChild(deleteItem)
 
-  let listNom = document.createElement("span")
-  listNom.classList.add("userData")
-  listNom.textContent = nom
-  divDisplay.appendChild(listNom)
+    let listPrenom = document.createElement("span")
+    listPrenom.classList.add("userData")
+    listPrenom.textContent = prenom
+    divDisplay.appendChild(listPrenom)
 
-  let listText = document.createElement("h4")
-  listText.textContent = selectText
-  divDisplay.appendChild(listText)
+    let listNom = document.createElement("span")
+    listNom.classList.add("userData")
+    listNom.textContent = nom
+    divDisplay.appendChild(listNom)
 
-  let listBio = document.createElement("p")
-  listBio.classList.add("describeBio")
-  listBio.textContent = bio
-  divDisplay.appendChild(listBio)
+    let listText = document.createElement("h4")
+    listText.textContent = selectText
+    divDisplay.appendChild(listText)
 
-  deleteItem.addEventListener("click", function() {
-    listPrenom.remove()
-    listNom.remove()
-    listBio.remove()
-    listText.remove()
-    createImage.remove()
+    let listBio = document.createElement("p")
+    listBio.classList.add("describeBio")
+    listBio.textContent = bio
+    divDisplay.appendChild(listBio)
 
-    deleteItem.style.display = "none"
-
-
-  })
-  let prenoms = document.getElementById("prenom")
-
-  let divCont = document.querySelectorAll('.contacts')
+    deleteItem.addEventListener("click", function () {
+      listPrenom.remove()
+      listNom.remove()
+      listBio.remove()
+      listText.remove()
+      createImage.remove()
+      deleteItem.style.display = "none"
+      lien = null
 
 
+    })
+    let prenoms = document.getElementById("prenom")
 
-  divDisplay.addEventListener("click", function() {
-
-    let idInput = document.getElementById("identifiant")
-
-    for (let i = 0; i < divCont.length; i++) {
-
-      idInput.value = divCont[i].id
-      image.src = divCont[i].childNodes[0].src
-      document.getElementById("prenom").value = divCont[i].childNodes[2].textContent
-      document.getElementById("nom").value = divCont[i].childNodes[3].textContent
-      selectText = divCont[i].childNodes[4]
-      document.getElementById("selectText").textContent = selectText.textContent
-      document.getElementById("bio").value = divCont[i].childNodes[5].textContent
+    let divCont = document.querySelectorAll('.contacts')
 
 
-    }
-    prenoms.addEventListener("change", function() {
+
+    divDisplay.addEventListener("click", function () {
+
+      let idInput = document.getElementById("identifiant")
+
       for (let i = 0; i < divCont.length; i++) {
 
-        if (idInput.value == divCont[i].id) {
-          divCont[i].childNodes[2].textContent = prenoms.value
+        idInput.value = divCont[i].id
+        image.src = divCont[i].childNodes[0].src
+        document.getElementById("prenom").value = divCont[i].childNodes[2].textContent
+        document.getElementById("nom").value = divCont[i].childNodes[3].textContent
+        selectText = divCont[i].childNodes[4]
+        document.getElementById("selectText").textContent = selectText.textContent
+        document.getElementById("bio").value = divCont[i].childNodes[5].textContent
+
+
+      }
+      prenoms.addEventListener("change", function () {
+        for (let i = 0; i < divCont.length; i++) {
+
+          if (idInput.value == divCont[i].id) {
+            divCont[i].childNodes[2].textContent = prenoms.value
+          }
+        }
+      })
+
+      document.getElementById("nom").addEventListener("change", function () {
+        for (let i = 0; i < divCont.length; i++) {
+
+          if (idInput.value == divCont[i].id) {
+            divCont[i].childNodes[3].textContent = document.getElementById("nom").value
+          }
+        }
+      })
+
+
+      for (option of options) {
+        option.onclick = function () {
+          console.log(selectText.textContent);
+          selectText.textContent = this.textContent
+          divDisplay.childNodes[4].textContent = selectText.textContent
+          list.classList.toggle("hide")
+          iconArrow.classList.toggle("rotate")
+
+
         }
       }
-    })
 
-    document.getElementById("nom").addEventListener("change", function() {
-      for (let i = 0; i < divCont.length; i++) {
+      document.getElementById("bio").addEventListener("change", function () {
+        for (let i = 0; i < divCont.length; i++) {
 
-        if (idInput.value == divCont[i].id) {
-          divCont[i].childNodes[3].textContent = document.getElementById("nom").value
+          if (idInput.value == divCont[i].id) {
+            divCont[i].childNodes[5].textContent = document.getElementById("bio").value
+          }
         }
-      }
-    })
+      })
 
-
-    for (option of options) {
-      option.onclick = function() {
-        console.log(selectText.textContent);
-        selectText.textContent = this.textContent
-        divDisplay.childNodes[4].textContent = selectText.textContent
-        list.classList.toggle("hide")
-        iconArrow.classList.toggle("rotate")
-
-
-      }
-    }
-
-    document.getElementById("bio").addEventListener("change", function() {
-      for (let i = 0; i < divCont.length; i++) {
-
-        if (idInput.value == divCont[i].id) {
-          divCont[i].childNodes[5].textContent = document.getElementById("bio").value
+      document.getElementById("image").addEventListener("change", function () {
+        for (let i = 0; i < divCont.length; i++) {
+          if (idInput.value == divCont[i].id) {
+            divCont[i].childNodes[0].src = image.src
+          }
         }
-      }
+      })
     })
 
-    document.getElementById("image").addEventListener("change", function() {
-      for (let i = 0; i < divCont.length; i++) {
-        if (idInput.value == divCont[i].id) {
-          divCont[i].childNodes[0].src = image.src
-        }
-      }
-    })
-  })
-
+  } else {
+    alert("Veuiller remplir tous les champs s'il vous plait")
+  }
+  
 
 })
 
 //Réinitialiser
-buttonReini.addEventListener("click", function(event) {
+buttonReini.addEventListener("click", function() {
 
   document.getElementById("prenom").value = ""
   document.getElementById("nom").value = ""
   document.getElementById("bio").value = ""
   document.getElementById("selectText").textContent = ""
   image.src = ""
+   lien = null
+   console.log(lien)
 
 
 })
